@@ -1,0 +1,30 @@
+{
+  "name": "dice_champ",
+  "version": "1.0.0",
+  "description": "I've wanted to make a dice game since the second week of the course. I'm glad that it didn't work with the prompts for the other projects, because now I have the abilities to make it the way I want it to be. Dice Champ will consist of at least two different dice games. The user must beat his or her opponent to advance to the next stage. I plan on using the spotify API to allow the user to listen to music while playing the game.",
+  "main": "app.js",
+  "dependencies": {
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.14.2",
+    "ejs": "^2.3.4",
+    "express": "^4.13.3",
+    "express-session": "^1.13.0",
+    "mongodb": "^2.1.4",
+    "nodemon": "^1.8.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bennettzjames/dice_Champ.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bennettzjames/dice_Champ/issues"
+  },
+  "homepage": "https://github.com/bennettzjames/dice_Champ#readme"
+}
