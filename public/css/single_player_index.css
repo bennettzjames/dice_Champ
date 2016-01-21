@@ -1,5 +1,6 @@
 body {
-	background-color: pink;
+	background-image: url("/images/dice_background_2.jpg");
+	background-size: cover;
 }
 
 #singleplayer-map {
