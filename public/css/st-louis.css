@@ -1,3 +1,17 @@
+#urbet {
+	height: 100px;
+	width: 100px;
+	background-color: yellow;
+	
+}
+
+#bankroll {
+	height: 100px;
+	width: 100px;
+	background-color: pink;
+	
+}
+
 .modal {
   display: none;
   text-align: center;
