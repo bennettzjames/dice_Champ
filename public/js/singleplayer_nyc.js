@@ -86,6 +86,7 @@ var compareRolls = function(){
 		$('.text-banner').append("The computer beat you! It\'s the computer\'s turn.")
 		computerRollDice();
 	} else if (playerRoll === computerRoll) {
+		$('.text-banner').empty();
 		$('.text-banner').append("Tie! Play again.")
 		totalBet = 0;
 		playerRoll = [];
@@ -748,10 +749,11 @@ var computerRollDice = function(){
 			$('.text-banner').append('Nothin! Computer roll Again.');
 			var $diceButton = $('#roll-dice');
 			$diceButton.hide();
-			turnCounter -= 1;
-			var $newRollButton = $('<button id="another-roll">Computer Roll Again!</button>');
-			$('body').append($newRollButton);
-			$newRollButton.on('click', function(){
+			
+			var $newComputerRollButton = $('<button id="computer-roll-again">Computer Roll Again!</button>');
+			$('body').append($newComputerRollButton);
+			$newComputerRollButton.on('click', function(){
+				turnCounter -= 1;
 				counter ++;
 				$('#counter').empty();
 				$('#counter').append("Number of rolls: " + counter);
@@ -763,8 +765,8 @@ var computerRollDice = function(){
 				rollDieThree = "";
 				$('.text-banner').empty();
 				$rolledDice.remove();
-				rollDice();
-				$newRollButton.remove();
+				computerRollDice();
+				$newComputerRollButton.remove();
 			});
 			
 		}
