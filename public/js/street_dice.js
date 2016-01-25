@@ -56,6 +56,7 @@ $(document).ready(function(){
 
 
 var rollDice = function(){
+	totalBet = 0;
 	var dieOneArray = [1, 2, 3, 4, 5, 6];
 	var dieTwoArray = [1, 2, 3, 4, 5, 6];
 	var randomizeOne = Math.floor(Math.random() * dieOneArray.length);
@@ -136,7 +137,8 @@ var rollDice = function(){
 		var $diceButton = $('#roll-dice');
 		$diceButton.hide();
 		$('#urbet').empty();
-		bankRoll = bankRoll + totalBet + totalBet;
+		var winnings = totalBet + totalBet;
+		bankRoll = bankRoll + winnings;
 		$bankRoll = $('#bankroll')
 		$bankRoll.empty();
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -160,7 +162,8 @@ var rollDice = function(){
 		var $diceButton = $('#roll-dice');
 		$diceButton.hide();
 		$('#urbet').empty();
-		bankRoll = bankRoll + totalBet + totalBet;
+		var winnings = totalBet + totalBet;
+		bankRoll = bankRoll + winnings;
 		$bankRoll = $('#bankroll')
 		$bankRoll.empty();
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -243,7 +246,8 @@ var rollDice = function(){
 					var $diceButton = $('#roll-dice');
 					$diceButton.hide();
 					$('#urbet').empty();
-					bankRoll = bankRoll + totalBet + totalBet;
+					var winnings = totalBet + totalBet;
+					bankRoll = bankRoll + winnings;
 					$bankRoll = $('#bankroll')
 					$bankRoll.empty();
 					$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -295,6 +299,7 @@ var rollDice = function(){
 
 
 var betFive = function(){
+	totalBet = 0;
 	totalBet += 5;
 	bankRoll -= 5;
 	$bankRoll = $('#bankroll')
@@ -306,6 +311,7 @@ var betFive = function(){
 };
 
 var betTen = function(){
+	totalBet = 0;
 	totalBet += 10;
 	bankRoll -= 10;
 	$bankRoll = $('#bankroll')
@@ -317,6 +323,7 @@ var betTen = function(){
 };
 
 var betTwentyFive = function(){
+	totalBet = 0;
 	totalBet += 25;
 	bankRoll -= 25;
 	$bankRoll = $('#bankroll')
@@ -328,6 +335,7 @@ var betTwentyFive = function(){
 };
 
 var betFifty = function(){
+	totalBet = 0;
 	totalBet += 50;
 	bankRoll -= 50;
 	$bankRoll = $('#bankroll')
@@ -356,7 +364,6 @@ var computerRollDice = function(){
 	clearBet();
 	$computerTurnButton = $('#computer-turn');
 	$computerTurnButton.remove();
-	totalBet = 0;
 	$five.on('click', betFive);
 	$ten.on('click', betTen);
 	$twentyfive.on('click', betTwentyFive);
@@ -416,7 +423,8 @@ var computerRollDice = function(){
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			bankRoll = bankRoll + totalBet + totalBet;
+			var winnings = totalBet + totalBet;
+			bankRoll = bankRoll + winnings;
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -439,7 +447,8 @@ var computerRollDice = function(){
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			bankRoll = bankRoll + totalBet + totalBet;
+			var winnings = totalBet + totalBet;
+			bankRoll = bankRoll + winnings;
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -463,7 +472,8 @@ var computerRollDice = function(){
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			bankRoll = bankRoll + totalBet + totalBet;
+			var winnings = totalBet + totalBet;
+			bankRoll = bankRoll + winnings;
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -506,6 +516,7 @@ var computerRollDice = function(){
 			$computerTurnButton.on('click', computerRollDice);
 		
 		} else {
+			totalBet = 0;
 			$('.text-banner').empty();
 			$('.text-banner').append("Computer rolled a " + diceTotal + "! Computer must roll another " + diceTotal + " on or before its 7th roll to win! BUT, if it rolls a 7 before it rolls another " + diceTotal + " you win!");
 			var $computerRoll = $('#computer-roll');
@@ -582,12 +593,12 @@ var computerRollDice = function(){
 							$('.text-banner').append("Computer Loses!");
 							$('#computer-roll-again').hide();
 							$('#urbet').empty();
-							totalBet = 0;
 							var $diceButton = $('#roll-dice');
 							$diceButton.hide();
 							$('#computer-turn').hide();
 							$('#urbet').empty();
-							bankRoll = bankRoll + totalBet + totalBet;
+							var winnings = totalBet + totalBet;
+							bankRoll = bankRoll + winnings;
 							$bankRoll = $('#bankroll')
 							$bankRoll.empty();
 							$bankRoll.append("Bank Roll: $ " + bankRoll)

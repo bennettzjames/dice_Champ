@@ -33,13 +33,7 @@ bcrypt.genSalt(10, function(err, salt){
 	})
 })
 
-// bcrypt.compare('password', hash, function(err, res){
 
-// });
-
-// bcrypt.compare('not_password', hash, function(err, res){
-
-// });
 
 app.get('/', function(req, res){
 	sess=req.session;

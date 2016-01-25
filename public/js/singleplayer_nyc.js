@@ -74,24 +74,87 @@ var compareRolls = function(){
 		playerRoll = [];
 		computerroll = [];
 		$('#urbet').empty();
-		bankRoll = bankRoll + totalBet + totalBet;
+		$('#bankroll').empty()
+		bankRoll = bankRoll + (totalBet * 2);
+		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
-		rollDice();
+		$newGame = $('<button id="new-game">New Game</button>');
+		$('body').append($newGame);
+		$newGame.on('click', function(){
+			$('#urbet').empty();
+			$('#new-game').remove();
+			var $rolledDice = $('.die')
+			rollTotal = [];
+			rollTotalToString = "";
+			rollDieOne = "";
+			rollDieTwo = "";
+			rollDieThree = "";
+			$('.text-banner').empty();
+			$('#counter').empty();
+			$rolledDice.remove();
+			var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
+			$('body').append($diceButton);
+			$diceButton.on('click', rollDice);
+		})
 	} else if (playerRoll < computerRoll) {
 		turnCounter = 0;
 		totalBet = 0;
 		playerRoll = [];
 		computerroll = [];
+		$('#bankroll').empty()
+		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		$('.text-banner').empty();
 		$('.text-banner').append("The computer beat you! It\'s the computer\'s turn.")
-		computerRollDice();
+		$newGame = $('<button id="new-game">New Game</button>');
+		$('body').append($newGame);
+		$newGame.on('click', function(){
+			$('#urbet').empty();
+			$('#new-game').remove();
+			var $rolledDice = $('.die')
+			rollTotal = [];
+			rollTotalToString = "";
+			rollDieOne = "";
+			rollDieTwo = "";
+			rollDieThree = "";
+			$('.text-banner').empty();
+			$('#counter').empty();
+			$rolledDice.remove();
+			var $computerDiceButton = $('<button id="computer-roll-dice">Computer Roll Dice</button>');
+			$('body').append($computerDiceButton);
+			$computerDiceButton.on('click', function(){
+				$('#computer-roll-dice').remove();
+				computerRollDice();
+			});
+		});
+		
 	} else if (playerRoll === computerRoll) {
+		clearBet();
+		turnCounter = 0;
+		$('#bankroll').empty()
+		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		$('.text-banner').empty();
 		$('.text-banner').append("Tie! Play again.")
 		totalBet = 0;
 		playerRoll = [];
 		computerroll = [];
-		rollDice();
+		$newGame = $('<button id="new-game">New Game</button>');
+		$('body').append($newGame);
+		$newGame.on('click', function(){
+			$('#urbet').empty();
+			$('#new-game').remove();
+			var $rolledDice = $('.die')
+			rollTotal = [];
+			rollTotalToString = "";
+			rollDieOne = "";
+			rollDieTwo = "";
+			rollDieThree = "";
+			$('.text-banner').empty();
+			$('#counter').empty();
+			$rolledDice.remove();
+			var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
+			$('body').append($diceButton);
+			$diceButton.on('click', rollDice);
+		})
 	} else {
 		$('.text-banner').append("Woops. Some logic is messed up")
 	}
@@ -99,10 +162,7 @@ var compareRolls = function(){
 
 	
 var rollDice = function(){
-
-	turnCounter ++;
-	console.log("turn counter: " + turnCounter)
-
+	$('#your-turn').remove()
 	var $dieOne = $('.die-one');
 	var $dieTwo = $('.die-two');
 	var $dieThree = $('.die-three');
@@ -186,7 +246,7 @@ var rollDice = function(){
 		var $diceButton = $('#roll-dice');
 		$('#urbet').empty();
 		totalBet = 0;
-		bankRoll = bankRoll + totalBet + totalBet;
+		bankRoll = bankRoll + (totalBet * 2);
 		$diceButton.hide();
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
 		$('body').append($newGameButton);
@@ -234,6 +294,8 @@ var rollDice = function(){
 		console.log('thats a triple');
 		$('.text-banner').append('It\'s hard to beat trips! Let\'s see if you can win!')
 		var $diceButton = $('#roll-dice');
+		turnCounter ++;
+		console.log("turn counter: " + turnCounter) 
 		playerRoll.push(rollDieOne * 10);
 		playerRoll.toString()
 		playerRoll = parseInt(playerRoll)
@@ -269,9 +331,10 @@ var rollDice = function(){
 			$('.text-banner').append("You rolled a " + rollDieThree);
 			playerRoll.push(rollDieThree);
 			playerRoll.toString()
+			turnCounter ++;
+			console.log("turn counter: " + turnCounter) 
 			playerRoll = parseInt(playerRoll)
 			console.log("player roll: " + playerRoll)
-			console.log("player roll: " + rollDieThree);
 			var $diceButton = $('#roll-dice');
 			$diceButton.hide();
 			if (turnCounter % 2 === 0) {
@@ -299,6 +362,8 @@ var rollDice = function(){
 		} else if (rollDieOne === rollDieThree){
 			console.log(rollDieTwo);
 			$('.text-banner').append("You rolled a " + rollDieTwo);
+			turnCounter ++;
+			console.log("turn counter: " + turnCounter) 
 			playerRoll.push(rollDieTwo);
 			playerRoll.toString()
 			playerRoll = parseInt(playerRoll)
@@ -329,6 +394,8 @@ var rollDice = function(){
 		} else if (rollDieTwo === rollDieThree){
 			console.log(rollDieOne);
 			$('.text-banner').append("You rolled a " + rollDieOne);
+			turnCounter ++;
+			console.log("turn counter: " + turnCounter) 
 			playerRoll.push(rollDieOne);
 			playerRoll.toString()
 			playerRoll = parseInt(playerRoll)
@@ -363,13 +430,10 @@ var rollDice = function(){
 		$('.text-banner').append('Nothin! Roll Again.');
 		var $diceButton = $('#roll-dice');
 		$diceButton.hide();
-		if (turnCounter % 2 === 0) {
-			compareRolls();
-		} else {
 		var $newRollButton = $('<button id="another-roll">Roll Again!</button>');
 		$('body').append($newRollButton);
 		$newRollButton.on('click', function(){
-			turnCounter -= 1;
+			//turnCounter -= 1;
 			counter ++;
 			$('#counter').empty();
 			$('#counter').append("Number of rolls: " + counter);
@@ -384,11 +448,12 @@ var rollDice = function(){
 			rollDice();
 			$newRollButton.remove();
 		});
-		}
 	}
 	if (counter > 7){
 		$('.text-banner').append('Thats too many rolls. You lose!');
 		var $diceButton = $('#roll-dice');
+		turnCounter ++;
+		console.log("turn counter: " + turnCounter) 
 		$diceButton.hide();
 		if (turnCounter % 2 === 0) {
 			compareRolls();
@@ -470,30 +535,25 @@ var clearBet = function(){
 
 
 var computerRollDice = function(){
-	turnCounter ++;
+	computerRoll = [];
 	$('#roll-dice').remove();
-	console.log('computer turnzzz')
-	counter = 0;
 	var $rolledDice = $('.die')
 	$('.text-banner').empty();
 	$('.text-banner').append("It\'s the computer\'s turn. Press 'Computer Roll' to continue.")
 	$('#counter').empty();
 	$rolledDice.remove();
-	clearBet();
 	$computerTurnButton = $('#computer-turn');
 	$computerTurnButton.remove();
-	totalBet = 0;
-	$five.on('click', betFive);
-	$ten.on('click', betTen);
-	$twentyfive.on('click', betTwentyFive);
-	$fifty.on('click', betFifty);
-	$clearBet.on('click', clearBet);
+	// $five.on('click', betFive);
+	// $ten.on('click', betTen);
+	// $twentyfive.on('click', betTwentyFive);
+	// $fifty.on('click', betFifty);
+	// $clearBet.on('click', clearBet);
 
-	$computerRollIt = $('<button id="computer-roll">Compter Roll</button>');
-	$('body').append($computerRollIt);
-	$computerRollIt.on('click', function(){
-		$computerRollIt.hide();
-		counter = 0;
+	// $computerRollIt = $('<button id="computer-roll">Compter Roll</button>');
+	// $('body').append($computerRollIt);
+	// $computerRollIt.on('click', function(){
+	// 	$computerRollIt.hide();
 		counter++
 		$('#counter').append("Number of rolls: " + counter);
 		var dieOneArray = [1, 2, 3, 4, 5, 6];
@@ -566,7 +626,6 @@ var computerRollDice = function(){
 		console.log(rollTotalToString);
 
 		if (rollTotalToString === "4,5,6") {
-			console.log('automatic win!');
 			$('.text-banner').append("Uh Oh! Computer rolled a 4, 5, 6. You lose.")
 			var $diceButton = $('#roll-dice');
 			turnCounter = 0;
@@ -576,7 +635,6 @@ var computerRollDice = function(){
 			var $computerTurnButton = $('<button id="computer-turn">Computer Turn</button>');
 			$('body').append($computerTurnButton);
 			$computerTurnButton.on('click', function(){
-				console.log('time for a new game');
 				counter = 0;
 				var $rolledDice = $('.die')
 				rollTotal = [];
@@ -591,7 +649,6 @@ var computerRollDice = function(){
 				computerRollDice();			
 			})
 		} else if (rollTotalToString === "1,2,3") {
-			console.log('loser!!');
 			$('.text-banner').empty();
 			$('.text-banner').append("Nice! 1, 2, 3 is an automatic loss for the computer!")
 			turnCounter = 0;
@@ -600,7 +657,6 @@ var computerRollDice = function(){
 			var $newGameButton = $('<button id="new-game">Play Again!!</button>');
 			$('body').append($newGameButton);
 			$newGameButton.on('click', function(){
-				console.log('time for a new game');
 				counter = 0;
 				var $rolledDice = $('.die')
 				rollTotal = [];
@@ -613,12 +669,14 @@ var computerRollDice = function(){
 				$rolledDice.remove();
 				$newGameButton.remove();
 				$diceButton.show();
+				rollDice();
 			});
 
 		} else if (rollDieOne === rollDieTwo && rollDieTwo === rollDieThree){
-			console.log('thats a triple');
 			$('.text-banner').append('Computer rolled trips!')
 			var $diceButton = $('#roll-dice');
+			turnCounter++;
+			console.log("turn counter: " + turnCounter) 
 			$diceButton.hide();
 			computerRoll.push(rollDieOne * 10);
 			computerRoll.toString()
@@ -630,7 +688,6 @@ var computerRollDice = function(){
 			var $yourTurnButton = $('<button id="your-turn">Your Turn</button>');
 			$('body').append($yourTurnButton);
 			$yourTurnButton.on('click', function(){
-				console.log('time for a new game');
 				counter = 0;
 				var $rolledDice = $('.die')
 				rollTotal = [];
@@ -652,6 +709,8 @@ var computerRollDice = function(){
 			if (rollDieOne === rollDieTwo){
 				console.log(rollDieThree);
 				$('.text-banner').append("Computer rolled a " + rollDieThree);
+				turnCounter++;
+				console.log("turn counter: " + turnCounter) 
 				var $diceButton = $('#roll-dice');
 				$diceButton.hide();
 				computerRoll.push(rollDieThree);
@@ -674,6 +733,7 @@ var computerRollDice = function(){
 					rollDieThree = "";
 					$('.text-banner').empty();
 					$('#counter').empty();
+					$('#your-turn').remove();
 					$rolledDice.remove();
 					$diceButton.show();
 					rollDice();
@@ -688,6 +748,8 @@ var computerRollDice = function(){
 				computerRoll.push(rollDieTwo);
 				computerRoll.toString()
 				computerRoll = parseInt(computerRoll)
+				turnCounter++;
+				console.log("turn counter: " + turnCounter) 
 				console.log("computer roll: " + computerRoll);
 				if (turnCounter % 2 === 0) {
 					compareRolls();
@@ -716,6 +778,8 @@ var computerRollDice = function(){
 				$('.text-banner').append("Computer rolled a " + rollDieOne);
 				var $diceButton = $('#roll-dice');
 				$diceButton.hide();
+				turnCounter++;
+				console.log("turn counter: " + turnCounter) 
 				computerRoll.push(rollDieOne);
 				computerRoll.toString()
 				computerRoll = parseInt(computerRoll)
@@ -749,12 +813,10 @@ var computerRollDice = function(){
 			$('.text-banner').append('Nothin! Computer roll Again.');
 			var $diceButton = $('#roll-dice');
 			$diceButton.hide();
-			
 			var $newComputerRollButton = $('<button id="computer-roll-again">Computer Roll Again!</button>');
 			$('body').append($newComputerRollButton);
 			$newComputerRollButton.on('click', function(){
-				turnCounter -= 1;
-				counter ++;
+				//turnCounter -= 1;
 				$('#counter').empty();
 				$('#counter').append("Number of rolls: " + counter);
 				var $rolledDice = $('.die')
@@ -765,38 +827,43 @@ var computerRollDice = function(){
 				rollDieThree = "";
 				$('.text-banner').empty();
 				$rolledDice.remove();
-				computerRollDice();
 				$newComputerRollButton.remove();
+				computerRollDice();
 			});
+		
 			
 		}
 		if (counter > 7){
 			$('.text-banner').append('Thats too many rolls. Computer lost!');
 			var $diceButton = $('#roll-dice');
+			turnCounter++;
+			console.log("turn counter: " + turnCounter) 
 			$diceButton.hide();
 			if (turnCounter % 2 === 0) {
 				compareRolls();
 			} else {
-			var $yourTurnButton = $('<button id="your-turn">Your Turn</button>');
-			$('body').append($yourTurnButton);
-			$yourTurnButton.on('click', function(){
-				console.log('time for a new game');
-				counter = 0;
-				var $rolledDice = $('.die')
-				rollTotal = [];
-				rollTotalToString = "";
-				rollDieOne = "";
-				rollDieTwo = "";
-				rollDieThree = "";
-				$('.text-banner').empty();
-				$('#counter').empty();
-				$rolledDice.remove();
-				$diceButton.show();
-				rollDice();
-			})
+				var $yourTurnButton = $('<button id="your-turn">Your Turn</button>');
+				$('body').append($yourTurnButton);
+				$yourTurnButton.on('click', function(){
+					console.log('time for a new game');
+					counter = 0;
+					var $rolledDice = $('.die')
+					rollTotal = [];
+					rollTotalToString = "";
+					rollDieOne = "";
+					rollDieTwo = "";
+					rollDieThree = "";
+					$('.text-banner').empty();
+					$('#counter').empty();
+					$rolledDice.remove();
+					$diceButton.show();
+					$('#your-turn').remove();
+					rollDice();
+				})
 			}
+			
 		}
 
-	});
+	// });
 };
 
