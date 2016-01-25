@@ -56,7 +56,6 @@ $(document).ready(function(){
 
 
 var rollDice = function(){
-	totalBet = 0;
 	var dieOneArray = [1, 2, 3, 4, 5, 6];
 	var dieTwoArray = [1, 2, 3, 4, 5, 6];
 	var randomizeOne = Math.floor(Math.random() * dieOneArray.length);
@@ -133,14 +132,13 @@ var rollDice = function(){
 	
 
 	} else if (counter === 1 && diceTotal === 7){
+		$bankRoll = $('#bankroll')
 		$('.text-banner').append(diceTotal + "! You Win!")
 		var $diceButton = $('#roll-dice');
 		$diceButton.hide();
 		$('#urbet').empty();
-		var winnings = totalBet + totalBet;
-		bankRoll = bankRoll + winnings;
-		$bankRoll = $('#bankroll')
 		$bankRoll.empty();
+		bankRoll = bankRoll + (totalBet * 2)
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -161,11 +159,10 @@ var rollDice = function(){
 		$('.text-banner').append(diceTotal + "! You Win!")
 		var $diceButton = $('#roll-dice');
 		$diceButton.hide();
-		$('#urbet').empty();
-		var winnings = totalBet + totalBet;
-		bankRoll = bankRoll + winnings;
 		$bankRoll = $('#bankroll')
 		$bankRoll.empty();
+		$('#urbet').empty();
+		bankRoll = bankRoll + (totalBet * 2)
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -183,7 +180,7 @@ var rollDice = function(){
 	} else {
 		$('.text-banner').append("You rolled a " + diceTotal + "! You must roll another " + diceTotal + " on or before your 7th roll to win! BUT, if you roll a 7 before you roll another " + diceTotal + " you lose!");
 		var $diceButton = $('#roll-dice');
-		$diceButton.hide();
+		$diceButton.remove();
 		var $rollAgain = $('<button id="roll-again">Roll Again</button>');
 		$('body').append($rollAgain);
 		$rollAgain.on('click', function(){
@@ -246,8 +243,8 @@ var rollDice = function(){
 					var $diceButton = $('#roll-dice');
 					$diceButton.hide();
 					$('#urbet').empty();
-					var winnings = totalBet + totalBet;
-					bankRoll = bankRoll + winnings;
+		
+					bankRoll = bankRoll + (totalBet * 2)
 					$bankRoll = $('#bankroll')
 					$bankRoll.empty();
 					$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -262,7 +259,9 @@ var rollDice = function(){
 						$('#counter').empty();
 						$rolledDice.remove();
 						$newGameButton.remove();
-						$diceButton.show();
+						var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
+						$('body').append($diceButton)
+						$diceButton.on('click', rollDice)
 					})
 
 				} else if (newDiceTotal === 7){
@@ -364,11 +363,11 @@ var computerRollDice = function(){
 	clearBet();
 	$computerTurnButton = $('#computer-turn');
 	$computerTurnButton.remove();
-	$five.on('click', betFive);
-	$ten.on('click', betTen);
-	$twentyfive.on('click', betTwentyFive);
-	$fifty.on('click', betFifty);
-	$clearBet.on('click', clearBet);
+	// $five.on('click', betFive);
+	// $ten.on('click', betTen);
+	// $twentyfive.on('click', betTwentyFive);
+	// $fifty.on('click', betFifty);
+	// $clearBet.on('click', clearBet);
 
 	$computerRollIt = $('<button id="computer-roll">Compter Roll</button>');
 	$('body').append($computerRollIt);
@@ -423,8 +422,8 @@ var computerRollDice = function(){
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			var winnings = totalBet + totalBet;
-			bankRoll = bankRoll + winnings;
+
+			bankRoll = bankRoll + (totalBet * 2)
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -441,14 +440,15 @@ var computerRollDice = function(){
 				$newGameButton.remove();
 				var $diceButton = $('#roll-dice');
 				$('body').append($diceButton);
+				$diceButton.on('click', rollDice);
 			})
 		} else if (counter === 1 && diceTotal === 3){
 			$('.text-banner').empty();
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			var winnings = totalBet + totalBet;
-			bankRoll = bankRoll + winnings;
+
+			bankRoll = bankRoll + (totalBet * 2)
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -463,8 +463,9 @@ var computerRollDice = function(){
 				$('#counter').empty();
 				$rolledDice.remove();
 				$newGameButton.remove();
-				var $diceButton = $('#roll-dice');
+				var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
 				$('body').append($diceButton);
+				$diceButton.on('click', rollDice);
 			})
 
 		} else if (counter === 1 && diceTotal === 12){
@@ -472,10 +473,9 @@ var computerRollDice = function(){
 			$('.text-banner').append(diceTotal + "! Computer Lost");
 			$('#computer-turn').hide();
 			$('#urbet').empty();
-			var winnings = totalBet + totalBet;
-			bankRoll = bankRoll + winnings;
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
+			bankRoll = bankRoll + (totalBet * 2)
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
 			totalBet = 0;
 			var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -490,6 +490,7 @@ var computerRollDice = function(){
 				$newGameButton.remove();
 				$diceButton = $('<div id ="roll-dice">Roll Dice</div>');
 				$('body').append($diceButton);
+				$diceButton.on('click', rollDice);
 			})
 	
 
@@ -516,7 +517,6 @@ var computerRollDice = function(){
 			$computerTurnButton.on('click', computerRollDice);
 		
 		} else {
-			totalBet = 0;
 			$('.text-banner').empty();
 			$('.text-banner').append("Computer rolled a " + diceTotal + "! Computer must roll another " + diceTotal + " on or before its 7th roll to win! BUT, if it rolls a 7 before it rolls another " + diceTotal + " you win!");
 			var $computerRoll = $('#computer-roll');
@@ -591,16 +591,16 @@ var computerRollDice = function(){
 						} else if (newDiceTotal === 7){
 							$('.text-banner').empty();
 							$('.text-banner').append("Computer Loses!");
-							$('#computer-roll-again').hide();
+							$('#computer-roll-again').remove();
 							$('#urbet').empty();
 							var $diceButton = $('#roll-dice');
 							$diceButton.hide();
 							$('#computer-turn').hide();
 							$('#urbet').empty();
-							var winnings = totalBet + totalBet;
-							bankRoll = bankRoll + winnings;
+				
 							$bankRoll = $('#bankroll')
 							$bankRoll.empty();
+							bankRoll = bankRoll + (totalBet * 2)
 							$bankRoll.append("Bank Roll: $ " + bankRoll)
 							totalBet = 0;
 							var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -613,8 +613,9 @@ var computerRollDice = function(){
 								$('#counter').empty();
 								$rolledDice.remove();
 								$newGameButton.remove();
-								var $diceButton = $('<div id="roll-dice">Roll Dice</div>');
+								var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
 								$('body').append($diceButton);
+								$diceButton.on('click', rollDice);
 							})
 
 						}
@@ -622,7 +623,7 @@ var computerRollDice = function(){
 					} else {
 						$('.text-banner').empty();
 						$('.text-banner').append("Computer Lost!");
-						$('#computer-roll-again').hide();
+						$('#computer-roll-again').remove();
 						$('#urbet').empty();
 						totalBet = 0;
 						var $diceButton = $('#roll-dice');
@@ -639,6 +640,7 @@ var computerRollDice = function(){
 								$newGameButton.remove();
 								var $diceButton = $('#roll-dice');
 								$('body').append($diceButton);
+								$diceButton.on('click', rollDice);
 							})
 					}
 
