@@ -1,3 +1,22 @@
+.wrapper {
+	background-color: black;
+	opacity: 0.9;
+	height: 100px;
+	width: 400px;
+}
+
+#singleplayer-title {
+	color: white;
+	text-align: center;
+	padding-top: 15px;
+}
+
+#description {
+	color: white;
+	text-align: center;
+	padding-bottom: 35px;
+}
+
 body {
 	background-image: url("/images/dice_background_2.jpg");
 	background-size: cover;
@@ -20,21 +39,21 @@ body {
 
 #st-louis {
 	left: 650px;
-	top: 400px;
+	top: 425px;
 	
 }
 
 #nyc {
 	left: 960px;
-	top: 290px;
+	top: 325px;
 }
 
 #baltimore {
-	left: 940px;
-	top: 380px;
+	left: 920px;
+	top: 390px;
 }
 
 #detroit {
 	left: 790px;
-	top: 280px;
+	top: 315px;
 }

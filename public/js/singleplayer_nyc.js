@@ -95,6 +95,7 @@ var compareRolls = function(){
 			var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
 			$('body').append($diceButton);
 			$diceButton.on('click', rollDice);
+			//ajax call to update users bankroll
 		})
 	} else if (playerRoll < computerRoll) {
 		turnCounter = 0;
