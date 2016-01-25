@@ -16,11 +16,11 @@
   "engines": {
     "node": "5.4.0"
   },
-  "devDependencies": {},
+  "devDependencies": {"nodemon": "^1.8.1"},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "nodemon": "^1.8.1"
+    "start": "node app.js"
+    
   },
   "repository": {
     "type": "git",
