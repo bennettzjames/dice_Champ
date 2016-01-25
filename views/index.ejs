@@ -12,7 +12,7 @@
 			email=$('#email').val();
 			pass=$('#password').val();
 
-			$.post(process.env.MONGOLAB_URI/login ||'http://localhost:3000/login', {email:email,pass:pass}, function(data){
+			$.post('process.env.MONGOLAB_URI/login' ||'http://localhost:3000/login', {email:email,pass:pass}, function(data){
 				if(data==='done'){
 					window.location.href="/welcome";
 				}
