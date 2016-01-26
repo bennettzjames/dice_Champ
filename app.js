@@ -107,11 +107,7 @@ app.post('/login', function(req, res){
 });
 
 app.get('/welcome', function(req, res){
-	res.write('<h1>Welcome to Dice Champ</h1>');
-	res.write('<a id=one-player href="/singleplayer">One Player</a><br>');
-	res.write('<a id=one-player href="/multiplayer">Two Player(coming soon)</a><br>');
-	res.end('<a href="/logout">Logout</a>');
-	
+	res.render('welcome')
 })
 
 app.get('/logout', function(req,res){
