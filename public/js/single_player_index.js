@@ -12,5 +12,13 @@ $(document).ready(function(){
 		console.log('clicked');
 		window.location.href="/singleplayer_nyc";
 	})
+	$('#detroit').on('click', function(){
+		console.log('clicked');
+		window.location.href="/singleplayer_detroit";
+	})
+	$('#dc').on('click', function(){
+		console.log('clicked');
+		window.location.href="/singleplayer_dc";
+	})
 
 })

@@ -145,6 +145,13 @@ app.get('/singleplayer_nyc', function(req, res){
 	res.render('singleplayer_nyc');
 })
  
+app.get('/singleplayer_detroit', function(req, res){
+	res.render('detroit');
+})
+
+app.get('/singleplayer_dc', function(req, res){
+	res.render('dc');
+})
 
 
 app.listen(process.env.PORT || 3000);
