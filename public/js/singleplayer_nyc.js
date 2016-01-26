@@ -8,9 +8,7 @@ var rollTotal = [];
 var playerRoll = [];
 var computerRoll = [];
 
-var bankRoll = 500;
-
-var computerBankRoll = 500;
+var bankRoll = 500
 
 var totalBet = 0;
 
@@ -56,15 +54,6 @@ $(document).ready(function(){
 	});
 });
 
-//logic to do:
-//finish joining all of the computerRoll and playerRoll numbers
-//compare the two numbers for applicable rolls
-//run compareRolls for applicable rolls
-//figure out the logic to make the right player roll at the right time. 
-
-//figure out why bets are doubled on computer rolls
-
-//make sure that all bets work correctly
 
 var compareRolls = function(){
 	if (playerRoll > computerRoll) {
@@ -76,6 +65,11 @@ var compareRolls = function(){
 		$('#urbet').empty();
 		$('#bankroll').empty()
 		bankRoll = bankRoll + (totalBet * 2);
+		//ajax call here
+		// $.post('/bankroll', {bankroll: bankRoll, })
+
+
+
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
 		$newGame = $('<button id="new-game">New Game</button>');
@@ -95,7 +89,6 @@ var compareRolls = function(){
 			var $diceButton = $('<button id="roll-dice">Roll Dice</button>');
 			$('body').append($diceButton);
 			$diceButton.on('click', rollDice);
-			//ajax call to update users bankroll
 		})
 	} else if (playerRoll < computerRoll) {
 		turnCounter = 0;
@@ -119,7 +112,8 @@ var compareRolls = function(){
 			rollDieThree = "";
 			$('.text-banner').empty();
 			$('#counter').empty();
-			$rolledDice.remove();
+			$rolledDice.remove();	
+
 			var $computerDiceButton = $('<button id="computer-roll-dice">Computer Roll Dice</button>');
 			$('body').append($computerDiceButton);
 			$computerDiceButton.on('click', function(){
@@ -248,6 +242,11 @@ var rollDice = function(){
 		$('#urbet').empty();
 		totalBet = 0;
 		bankRoll = bankRoll + (totalBet * 2);
+		//ajax call here
+		$.post('/bankroll', {bankRoll: bankRoll});
+
+
+
 		$diceButton.hide();
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
 		$('body').append($newGameButton);

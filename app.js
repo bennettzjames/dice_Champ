@@ -6,7 +6,8 @@ var bodyParser = require('body-parser');
 var bcrypt = require('bcrypt');
 var MongoClient = require('mongodb').MongoClient;
 var bodyParser = require('body-parser')
-var MongoStore = require('connect-mongo')(session)
+var MongoStore = require('connect-mongo')(session);
+var cookieParser = require('cookie-parser');
 
 var authenticateUser = function(email, password, callback){
 	db.collection('users').findOne({email: email}, function(err, data){
@@ -34,6 +35,7 @@ app.use(function(req, res, next){
 	next();
 })
 var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost:27017/dice';
+app.use(cookieParser());
 app.use(session({
 	secret: 'superdupersecret',
 	store: new MongoStore({ url: mongoUrl })
@@ -42,6 +44,8 @@ app.use(session({
 // db
 var db;
 var sess;
+
+
 var MongoClient = require('mongodb').MongoClient;
 var ObjectId = require('mongodb').ObjectId;
 MongoClient.connect(mongoUrl, function(err, database) {
@@ -51,13 +55,7 @@ MongoClient.connect(mongoUrl, function(err, database) {
 });
 
 app.get('/', function(req, res){
-	// sess=req.session;
-	
-	// if(sess.email){
-	// 	res.redirect('/welcome');
-	// } else {
-		res.render('root')
-	//}
+	res.render('root')
 });
 
 app.get('/root', function(req, res){
@@ -78,13 +76,14 @@ app.post('/signup', function(req, res){
 			var newuser = {};
 			newuser.name = req.body.name
 			newuser.email = req.body.email
-			newuser.username = req.body.username
+			newuser.username = req.body.username;
 			newuser.password = hash;
-			newuser.bankRoll = 1000
+			newuser.bankRoll = 1000;
 			db.collection('users').insert(newuser)
 			db.collection('users').find({email: newuser.email}), function(err, data){
 				req.session.name = data.username
 				req.session.userId = data.__dirname
+				req.session.bankRoll = data.bankRoll;
 				console.log(data.username)
 			}
 		})
@@ -98,17 +97,17 @@ app.get('/login', function(req, res){
 
 app.post('/login', function(req, res){
 	authenticateUser(req.body.email, req.body.password, function(user){
-		if (user){
+		if (user) {
 			req.session.email = user.email;
 			req.session.userId = user._id;
+			req.session.bankRoll = user.bankRoll;
 		}
 		res.redirect('/welcome')
 	})
 });
 
 app.get('/welcome', function(req, res){
-	var sess = req.session
-	res.write('<h1>Hello ' +sess.email+'</h1>');
+	res.write('<h1>Welcome to Dice Champ</h1>');
 	res.write('<a id=one-player href="/singleplayer">One Player</a><br>');
 	res.write('<a id=one-player href="/multiplayer">Two Player(coming soon)</a><br>');
 	res.end('<a href="/logout">Logout</a>');
@@ -125,18 +124,28 @@ app.get('/logout', function(req,res){
 	});
 });
 
+app.post('/bankroll', function(req, res){
+	
+	db.collection.update({email: req.session.email}, {bankRoll: req.body.bankRoll});
+
+	res.end();
+	// var bankRoll = req.body.bankRoll;
+	// var userEmail = req.body.email;
+	// db.collection('users')update({})
+})
+
 app.get('/singleplayer', function(req, res){
-	//sess=req.session;
+	sess=req.session;
 	res.render('single_player_index')
 });
 
 app.get('/singleplayer_st_louis', function(req, res){
-	//sess=req.session;
+	sess=req.session;
 	res.render('singleplayer_st_louis');
 })
 
 app.get('/singleplayer_nyc', function(req, res){
-	//sess=req.session;
+	console.log('SESSION ', req.session);
 	res.render('singleplayer_nyc');
 })
  

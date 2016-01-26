@@ -1,15 +1,26 @@
-#urbet {
+.bet-stuff {
+	float: right;
+}
+.wrapper {
+	background-color: black;
+	opacity: 0.9;
 	height: 100px;
-	width: 100px;
-	background-color: yellow;
-	
+	width: 400px;
 }
 
-#bankroll {
+body {
+	background-image: url("/images/arch.jpg");
+	background-size: cover;
+}
+
+#urbet, #bankroll {
 	height: 100px;
 	width: 100px;
-	background-color: pink;
-	
+	background-color: black;
+	opacity: 0.7;
+	color: white;
+	margin-top: 20px;
+	border-radius: 10px;
 }
 
 .modal {
@@ -37,15 +48,6 @@
 	height: 100px;
 	width: 300px;
 	background-color: lavender;
-}
-
-.die-one, .die-two {
-	/*padding-top: 30px;*/
-	background-color: red;
-	border: 5px solid black;
-	height: 300px;
-	width: 300px;
-	float: left;
 }
 
 .num-1 {

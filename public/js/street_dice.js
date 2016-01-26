@@ -4,8 +4,6 @@ var counter = 0;
 
 var bankRoll = 500;
 
-var computerBankRoll = 500;
-
 var totalBet = 0;
 
 var rollDieOne;
@@ -18,9 +16,6 @@ $five = $('#five');
 $ten = $('#ten');
 $twentyfive = $('#twentyfive');
 $fifty = $('#fifty');
-
-
-
 
 
 $(document).ready(function(){
@@ -139,6 +134,11 @@ var rollDice = function(){
 		$('#urbet').empty();
 		$bankRoll.empty();
 		bankRoll = bankRoll + (totalBet * 2)
+		//ajax call here
+
+
+
+
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -163,6 +163,11 @@ var rollDice = function(){
 		$bankRoll.empty();
 		$('#urbet').empty();
 		bankRoll = bankRoll + (totalBet * 2)
+		//ajax call here
+
+
+
+
 		$bankRoll.append("Bank Roll: $ " + bankRoll)
 		totalBet = 0;
 		var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -245,6 +250,11 @@ var rollDice = function(){
 					$('#urbet').empty();
 		
 					bankRoll = bankRoll + (totalBet * 2)
+					//ajax call here
+
+
+
+
 					$bankRoll = $('#bankroll')
 					$bankRoll.empty();
 					$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -424,6 +434,11 @@ var computerRollDice = function(){
 			$('#urbet').empty();
 
 			bankRoll = bankRoll + (totalBet * 2)
+			//ajax call here
+
+
+
+
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -449,6 +464,11 @@ var computerRollDice = function(){
 			$('#urbet').empty();
 
 			bankRoll = bankRoll + (totalBet * 2)
+			//ajax call here
+
+
+
+
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
@@ -476,6 +496,11 @@ var computerRollDice = function(){
 			$bankRoll = $('#bankroll')
 			$bankRoll.empty();
 			bankRoll = bankRoll + (totalBet * 2)
+			//ajax call here
+
+
+
+
 			$bankRoll.append("Bank Roll: $ " + bankRoll)
 			totalBet = 0;
 			var $newGameButton = $('<button id="new-game">Play Again!!</button>');
@@ -601,6 +626,11 @@ var computerRollDice = function(){
 							$bankRoll = $('#bankroll')
 							$bankRoll.empty();
 							bankRoll = bankRoll + (totalBet * 2)
+							//ajax call here
+
+
+
+
 							$bankRoll.append("Bank Roll: $ " + bankRoll)
 							totalBet = 0;
 							var $newGameButton = $('<button id="new-game">Play Again!!</button>');
