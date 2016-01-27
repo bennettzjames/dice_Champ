@@ -93,37 +93,37 @@ body {
 }
 
 .num-1 {
-	background-image: url("http://www.clker.com/cliparts/9/u/S/1/o/A/red-die-1-md.png");
+	background-image: url("/images/die-one.png");
 	height: 300px;
 	width: 300px;
 }
 
 .num-2 {
-	background-image: url("http://www.clker.com/cliparts/N/e/8/O/Z/G/red-die-2-md.png");
+	background-image: url("/images/die-two.png");
 	height: 300px;
 	width: 300px;
 }
 
 .num-3 {
-	background-image: url("http://www.clker.com/cliparts/Y/3/S/S/N/8/red-die-3-md.png");
+	background-image: url("/images/die-three.png");
 	height: 300px;
 	width: 300px;
 }
 
 .num-4 {
-	background-image: url("http://www.clker.com/cliparts/T/1/G/i/B/E/red-die-4-md.png");
+	background-image: url("/images/die-four.png");
 	height: 300px;
 	width: 300px;
 }
 
 .num-5 {
-	background-image: url("http://www.clker.com/cliparts/p/N/w/Z/Q/C/red-die-5-md.png");
+	background-image: url("/images/die-five.png");
 	height: 300px;
 	width: 300px;
 }
 
 .num-6 {
-	background-image: url("http://www.clker.com/cliparts/O/r/n/M/N/g/red-die-6-md.png");
+	background-image: url("/images/die-six.png");
 	height: 300px;
 	width: 300px;
 }
